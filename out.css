@@ -290,13 +290,13 @@ body {
   }
 
   .barcode-section img {
-    width: 80%;
-    filter: invert(1); /* Makes barcode white if needed */
+    width: 50%;
+   /* Makes barcode white if needed */
   }
 
   /* Stacking buttons for Mobile */
   .btns {
-    flex-direction: column-reverse;
+    
     margin-top: 30px;
   }
 }
