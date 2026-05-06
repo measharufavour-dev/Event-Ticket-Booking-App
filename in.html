@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="in.css" />
+  </head>
+  <body>
+    <!-- Inside your inner-container -->
+<div class="inner-container">
+    <div class="form-group">
+      <label>Enter your name</label>
+      <!-- ADD ID="fullName" -->
+      <input type="text" id="fullName" placeholder="John Doe">
+    </div>
+
+    <div class="form-group">
+      <label>Enter your email *</label>
+      <div class="input-with-icon">
+        <!-- ADD ID="email" -->
+        <input type="email" id="email" placeholder="hello@avioflagos.io">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Special request?</label>
+      <!-- ADD ID="specialRequest" -->
+      <textarea id="specialRequest" placeholder="Any specific needs?"></textarea>
+    </div>
+
+    <div class="btns">
+      <!-- Ensure class matches script selector -->
+      <button class="primary-btn">Get My Free Ticket</button>
+      <button class="secondary-btn">Back</button>
+    </div>
+</div>
+
+
+    <script  type="module" src="in.js"></script>
+  </body>
+</html>

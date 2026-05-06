@@ -1,0 +1,302 @@
+/* --- 1. Global Reset & Variables --- */
+:root {
+  --bg-color: #02191d;      /* Deep dark background */
+  --card-bg: #041e23;       /* Main container background */
+  --ticket-bg: #072d34;     /* Inner ticket card background */
+  --primary-teal: #24a0b5;  /* Main accent/border color */
+  --border-muted: #0e464f;  /* Subtle border color */
+  --text-white: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-white);
+  padding: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- 2. Main Wrapper Card --- */
+.parent-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-muted);
+  border-radius: 32px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px; /* Locked for mobile app feel */
+}
+
+/* --- 3. Step Header --- */
+.tic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tic h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.tic span {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.progress-container {
+  width: 100%;
+  height: 4px;
+  background: var(--border-muted);
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--primary-teal);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* --- 4. The Ticket Shape (Figma Style) --- */
+.ticket-card {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--ticket-bg);
+  border: 1px solid var(--primary-teal);
+  border-radius: 20px;
+  position: relative;
+  background: radial-gradient(circle at center, #07373f 0%, #02191d 100%);
+}
+
+/* Punched corner effect using pseudo-elements */
+.ticket-card::before, .ticket-card::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--primary-teal);
+  border-radius: 50%;
+  top: 75%; /* Align with the dashed divider */
+  z-index: 2;
+}
+
+.ticket-card::before { left: -16px; }
+.ticket-card::after { right: -16px; }
+
+.ticket-inner {
+  border: 1px solid var(--primary-teal);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+/* --- 5. User Photo & Info --- */
+.user-photo img {
+  width: 140px;
+  height: 140px;
+  border: 4px solid var(--primary-teal);
+  border-radius: 12px;
+  margin: 15px 0;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(36, 160, 181, 0.2);
+}
+
+/* --- 6. Data Grid (Information Table) --- */
+.ticket-data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #08343c;
+  border-radius: 8px;
+  border: 1px solid var(--border-muted);
+  overflow: hidden;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.data-item {
+  padding: 10px 12px;
+  border: 0.5px solid var(--border-muted);
+}
+
+.data-item.full { grid-column: span 2; }
+
+.data-item label {
+  font-size: 10px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.data-item p {
+  font-size: 12px;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* --- 7. Barcode Divider & Image --- */
+.barcode-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--border-muted);
+  text-align: center;
+}
+
+.barcode-section img {
+  width: 100%;
+  max-width: 250px;
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+/* --- 8. Bottom Buttons --- */
+.btns {
+  display: flex;
+  flex-direction: column-reverse; /* For mobile-first stacking */
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.primary-btn, .secondary-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.primary-btn {
+  background-color: var(--primary-teal);
+  color: white;
+  border: none;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  color: var(--primary-teal);
+  border: 1px solid var(--primary-teal);
+}
+
+.btns button:active { transform: scale(0.98); }
+
+
+
+
+
+/* ============================================================ */
+/* STEP 3: TICKET READY MOBILE STYLES                           */
+/* ============================================================ */
+
+@media screen and (max-width: 768px) {
+  .status-message {
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .status-message h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  /* The Ticket Shape */
+  .ticket-card {
+    background-color: #072d34;
+    border: 1px solid #24a0b5;
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+    background-image: radial-gradient(circle at top left, transparent 15px, #072d34 15px),
+                      radial-gradient(circle at top right, transparent 15px, #072d34 15px);
+    /* This creates the 'punched' ticket effect */
+  }
+
+  .ticket-inner {
+    border: 1px solid #24a0b5;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .event-info h1 {
+    font-family: 'JejuMyeongjo', serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .user-photo img {
+    width: 100px;
+    height: 100px;
+    border: 4px solid #24a0b5;
+    border-radius: 12px;
+    margin: 15px 0;
+    object-fit: cover;
+  }
+
+  /* 2-Column Data Grid */
+  .ticket-data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #197686;
+    margin-top: 15px;
+    text-align: left;
+  }
+
+  .data-item {
+    padding: 10px;
+    border-bottom: 1px solid #197686;
+    border-right: 1px solid #197686;
+  }
+
+  .data-item:nth-child(even) {
+    border-right: none;
+  }
+
+  .data-item.full {
+    grid-column: span 2;
+    border-right: none;
+  }
+
+  .data-item label {
+    font-size: 10px;
+    color: #888;
+    display: block;
+  }
+
+  .data-item p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  /* Barcode Styles */
+  .barcode-section {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 2px dashed #197686;
+    padding-top: 20px;
+  }
+
+  .barcode-section img {
+    width: 80%;
+    filter: invert(1); /* Makes barcode white if needed */
+  }
+
+  /* Stacking buttons for Mobile */
+  .btns {
+    flex-direction: column-reverse;
+    margin-top: 30px;
+  }
+}
